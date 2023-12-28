@@ -1,4 +1,3 @@
-# project-management-app
 # Project Management RESTful API with Docker
 
 This Java application, built with Spring Boot, manages projects via a RESTful API and is containerized using Docker.
