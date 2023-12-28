@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: project_manager
+      MYSQL_USER: rachel
+      MYSQL_PASSWORD: 1234
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+    networks:
+      - my-network
+    ports:
+      - "3306:3306"
+    
+  java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080" 
+    networks:
+      - my-network
+
+networks:
+      my-network:
+          driver: bridge
